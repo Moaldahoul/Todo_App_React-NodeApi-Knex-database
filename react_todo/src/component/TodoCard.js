@@ -8,7 +8,8 @@ class TodoCard extends React.Component {
         this.state = {
             editing:false,
             title: props.title,
-            isDone: props.isDone
+            isDone: props.isDone,
+        
         };
         this.onEdit = this.onEdit.bind(this);
         this.updateState = this.updateState.bind(this);
@@ -19,7 +20,7 @@ class TodoCard extends React.Component {
             editing: !this.state.editing
         })  
     }
-
+  
     updateState(title, isDone){
         this.setState({
             title: title,
@@ -31,11 +32,11 @@ class TodoCard extends React.Component {
         const {title, isDone} = this.state;
         if(this.state.editing)
         return (
-            <SingleTodoEdit title={title} isDone={isDone} toggleEdit = {this.onEdit} 
+            <SingleTodoEdit title={title} isDone={isDone} toggleEdit = {this.onEdit} onDelete={this.onDelete}
                             id={this.props.id} updateState={this.updateState }  />
         );
         return(
-            <SingleTodoList title={title} isDone={isDone} onEdit ={this.onEdit} id={this.props.id} />
+            <SingleTodoList title={title} isDone={isDone} onEdit ={this.onEdit} history={this.props.history} id={this.props.id} onDelete={this.onDelete}/>
         );
     }
 }

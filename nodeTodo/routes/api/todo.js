@@ -34,7 +34,7 @@ router.patch('/:id', function(req, res){
 });
 
 router.delete('/:id', function (req, res) {
-    db('todo').where(id.req.params.id).del().then(function() {
+    db('todo').where({id: req.params.id}).del().then(function() {
         res.json({ success: true });
     });
 });
