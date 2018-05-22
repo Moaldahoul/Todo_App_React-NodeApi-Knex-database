@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import ListItems from './ListItems';
 import ListItem from './ListItem';
 import axios from 'axios';
@@ -13,23 +13,21 @@ class ItemsBody extends React.Component{
         };
     }
 
-    componentDidlMount() {
-        axios.get('/api/todo').then((response) => {
-            
-          this.setState({ 
-              loading: false, 
-              todos: response.data 
+     componentDidMount() { 
+        axios.get('/api/todo').then(response => {
+            this.setState({ 
+                loading: false, 
+                todos: response.data 
+              });
             });
-        });
-      }
-
-      renderTodos(){
+        } 
+    renderTodos(){
         return _.map(this.state.todos, (todo) =>{
             return(
-                <ListItem title={todo.title} isDone={todo.is_done}/>
+                <ListItem key={todo.id} title={todo.title} isDone={todo.is_done} id={todo.id} />
             );
         });
-    }
+    }  
 
     render(){
         if(this.state.loading)
@@ -42,7 +40,8 @@ class ItemsBody extends React.Component{
                        {this.renderTodos()}
                     </ListItems>
             );   
-        }   
+        } 
+        
 }
 
 export default ItemsBody;

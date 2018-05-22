@@ -28,7 +28,7 @@ router.put('/:id', function(req, res){
 });
 
 router.patch('/:id', function(req, res){
-    db('todo').where({ id: req.params.id}).update(req.body).returning('*').then(function(data){
+    db('todo').where({ id: req.params.id }).update(req.body).returning('*').then(function(data){
         res.send(data);
     });
 });
@@ -40,7 +40,7 @@ router.delete('/:id', function (req, res) {
 });
 
 router.get('/:id', function(req, res){
-    db('todo').where({id: req.params.id}).select().then(function(data){
+    db('todo').where({id: req.params.id}).first().then(function(data){
         res.send(data);
     });
 });

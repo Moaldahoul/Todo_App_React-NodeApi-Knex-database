@@ -1,14 +1,16 @@
 const express = require('express');
 const apiRoute = require('./routes/api/index.js');
-const bodyParser = require('body-parser') 
+const bodyParser = require('body-parser');
+const path = require('path'); 
 const app = express();
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended:true
-}))
+}));
 
 app.use('/api', apiRoute);
 
-app.listen('4000');
+const PORT = process.env.PORT || 4000;
+app.listen(PORT);
